@@ -40,7 +40,6 @@ public class CamManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             diference = (camera.ScreenToWorldPoint(Input.mousePosition)) - camera.transform.position;
-            Debug.Log(camera.ScreenToWorldPoint(Input.mousePosition));
             if (drag == false)
             {
                 drag = true;

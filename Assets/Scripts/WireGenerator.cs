@@ -98,7 +98,6 @@ public class WireGenerator : MonoBehaviour
             if (Vector3.Distance(lastMousePos, currentMousePos) > 0.05)
             {
                 lastMousePos = currentMousePos;
-                Debug.Log("redrawing");
                 StartCoroutine(MakeWire());
             }
         }

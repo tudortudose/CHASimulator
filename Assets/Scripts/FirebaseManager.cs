@@ -66,14 +66,6 @@ public class FirebaseManager : MonoBehaviour
         });
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            //LoadModuleTrigger("nand3");
-        }
-    }
-
     private void InitializeFirebase()
     {
         Debug.Log("Setting up Firebase Auth");
@@ -284,7 +276,6 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator LoadUserProjects()
     {
-        //Get the currently logged in user data
         var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -329,7 +320,6 @@ public class FirebaseManager : MonoBehaviour
     }
     private IEnumerator LoadOtherPublicProjects()
     {
-        //Get the currently logged in user data
         var DBTask = DBreference.Child("users").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -438,7 +428,6 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator OpenProject(string projectKey, string ownerUID, bool isMine)
     {
-        //Get the currently logged in user data
         var DBTask = DBreference.Child("users").Child(ownerUID).Child("projects").Child(projectKey).Child("components").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -474,8 +463,6 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveProject(string jsonValue)
     {
-        //Get the currently logged in user data
-        Debug.Log("User id: " + User.UserId);
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("projects").Child(currentProjectKey).Child("components").SetRawJsonValueAsync(jsonValue);
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -497,8 +484,6 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator SaveModule(string jsonValue, string moduleName)
     {
-        //Get the currently logged in user data
-        Debug.Log("User id: " + User.UserId);
         string moduleKey = null;
 
         var DBTaskGet = DBreference.Child("users").Child(User.UserId).Child("modules").GetValueAsync();
@@ -550,7 +535,6 @@ public class FirebaseManager : MonoBehaviour
     private IEnumerator LoadModule(string moduleName, Transform holder)
     {
         Debug.Log("Module loading");
-        //Get the currently logged in user data
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("modules").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -577,7 +561,6 @@ public class FirebaseManager : MonoBehaviour
     private IEnumerator LoadAdminModules(Transform holder)
     {
         Debug.Log("Modules loading");
-        //Get the currently logged in user data
         var DBTask = DBreference.Child("users").Child("q3HrSFxAbMhArvb7Qd1Ss8nKKq42").Child("modules").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
@@ -601,7 +584,6 @@ public class FirebaseManager : MonoBehaviour
     private IEnumerator LoadUserModules(Transform holder)
     {
         Debug.Log("Modules loading");
-        //Get the currently logged in user data
         var DBTask = DBreference.Child("users").Child(User.UserId).Child("modules").GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);

@@ -81,7 +81,6 @@ public class SavingManager : MonoBehaviour
     public void LoadProject(string jsonData)
     {
         if (jsonData == "\"\"" || jsonData == null) return;
-        Debug.Log(jsonData);
         ProjectData projectData = JsonUtility.FromJson<ProjectData>(jsonData);
 
         foreach (var component in projectData.logicalComponents)
@@ -174,7 +173,6 @@ public class SavingManager : MonoBehaviour
         projectData.wires = SaveWires(projectWiresHolder);
 
         string jsonData = JsonUtility.ToJson(projectData, true);
-        Debug.Log(jsonData);
         GameObject.FindObjectOfType<FirebaseManager>().SaveProjectTrigger(jsonData);
 
         ClearProject();
@@ -188,7 +186,6 @@ public class SavingManager : MonoBehaviour
     IEnumerator LoadModule(string jsonData, Transform holder)
     {
         if (jsonData == "\"\"" || jsonData == null) yield break;
-        Debug.Log(jsonData);
         ModuleData moduleData = JsonUtility.FromJson<ModuleData>(jsonData);
 
         var newModule = (Instantiate(modulePrefab, holder)).GetComponent<LogicModule>();
@@ -337,7 +334,6 @@ public class SavingManager : MonoBehaviour
         moduleData.wires = SaveWires(module.wiresHolder, module.moduleName);
 
         string jsonData = JsonUtility.ToJson(moduleData, true);
-        Debug.Log(jsonData);
         GameObject.FindObjectOfType<FirebaseManager>().SaveModuleTrigger(jsonData, moduleData.moduleName);
 
         if (!userModules.ContainsKey(module.moduleName))

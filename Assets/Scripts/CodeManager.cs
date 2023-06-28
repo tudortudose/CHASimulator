@@ -345,7 +345,6 @@ public class CodeManager : MonoBehaviour
         foreach (var obj in codeObjects)
         {
             if (obj.type == CodeObjectType.outputNode) continue;
-            Debug.Log(obj.type);
             rightXPos = Mathf.Max(obj.gameObject.transform.position.x, rightXPos);
         }
 
@@ -559,7 +558,6 @@ public class CodeManager : MonoBehaviour
             newLine = newLine.Replace("inputs:", "inputs: ");
             newLine = newLine.Replace("outputs:", "outputs: ");
             newLine = newLine.Replace("module", "module ");
-            Debug.Log("line " + newLine);
             for (int i = 0; i < newLine.Length; i++)
             {
                 foreach (string word in redWords.Concat(moduleRedWords))
@@ -568,7 +566,6 @@ public class CodeManager : MonoBehaviour
                     {
                         newLine = newLine.Insert(i + word.Length - 1, "</color>");
                         newLine = newLine.Insert(i + 2, "<color=#FF7800FF>");
-                        Debug.Log(newLine);
                         i += word.Length + "<color=#FF7800FF></color>".Length;
                         break;
                     }
@@ -580,7 +577,6 @@ public class CodeManager : MonoBehaviour
                     {
                         newLine = newLine.Insert(i + word.Length, "</color>");
                         newLine = newLine.Insert(i, "<color=#82DC32>");
-                        Debug.Log(newLine);
                         i += word.Length + "<color=#FF7800FF></color>".Length;
                         break;
                     }
